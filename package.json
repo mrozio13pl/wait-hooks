@@ -21,7 +21,8 @@
     "build": "tsdown",
     "lint": "eslint .",
     "test": "vitest run",
-    "release": "node scripts/release.sh",
+    "changelog": "chng",
+    "release": "sh scripts/release.sh",
     "prepare": "lefthook install"
   },
   "files": [
