@@ -10,7 +10,7 @@ npm run lint
 npm run build
 
 # Changelog
-node ./bin/chng.js --repo-url "https://github.com/mrozio13pl/wait-hooks"
+npm run changelog
 
 # Commit
 git add CHANGELOG.md
