@@ -1,0 +1,82 @@
+{
+  "name": "wait-hooks",
+  "version": "1.0.0",
+  "description": "tiny async hooks for react",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "release": "node scripts/release.sh",
+    "prepare": "lefthook install"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "promise",
+    "async",
+    "wait",
+    "swr",
+    "query"
+  ],
+  "repository": "github:mrozio13pl/wait-hooks",
+  "author": "mrozio13pl",
+  "license": "MIT",
+  "peerDependencies": {
+    "@types/react": "*",
+    "@types/react-dom": "*",
+    "react": "*",
+    "react-dom": "*"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    },
+    "@types/react-dom": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@eslint-react/eslint-plugin": "^1.49.0",
+    "@eslint/js": "^9.27.0",
+    "@evilmartians/lefthook": "^1.11.13",
+    "@testing-library/react": "^16.3.0",
+    "@tsconfig/vite-react": "^3.4.0",
+    "@types/node": "^22.15.21",
+    "@types/react": "^19.1.5",
+    "@types/react-dom": "^19.1.5",
+    "chng": "^0.1.0",
+    "eslint": "^9.27.0",
+    "happy-dom": "^17.4.7",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tsdown": "^0.12.1",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.32.1",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.1.4"
+  },
+  "packageManager": "pnpm@10.11.0"
+}
