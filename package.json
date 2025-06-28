@@ -19,7 +19,7 @@
   },
   "scripts": {
     "build": "tsdown",
-    "lint": "eslint .",
+    "lint": "publint && eslint .",
     "test": "vitest run",
     "changelog": "chng",
     "release": "sh scripts/release.sh",
@@ -71,6 +71,7 @@
     "chng": "^0.1.0",
     "eslint": "^9.30.0",
     "happy-dom": "^18.0.1",
+    "publint": "^0.3.12",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "tsdown": "^0.12.9",
