@@ -1,34 +1,46 @@
-export type UseWaitReturn<T extends Promise<T>, Error = unknown> = {
+// shared core states
+
+type AsyncSuccess<T> = {
     data: T;
     error: undefined;
     isLoading: false;
-} | {
+};
+
+type AsyncError<E = unknown> = {
     data: undefined;
-    error: Error;
+    error: E;
     isLoading: false;
-} | {
+};
+
+type AsyncLoading = {
     data: undefined;
     error: undefined;
     isLoading: true;
 };
 
+type AsyncIdle = {
+    data: undefined;
+    error: undefined;
+    isLoading: false;
+};
+
+// return types
+
+export type UseWaitReturn<TResult, TError = unknown> = 
+  | AsyncSuccess<TResult>
+  | AsyncError<TError>
+  | AsyncLoading;
+
 export type UseDeferedWaitReturn<
     TArgs extends any[],
     TResult,
     TError = unknown
-> = ({
-    data: TResult;
-    error: undefined;
-    isLoading: false;
-} | {
-    data: undefined;
-    error: undefined;
-    isLoading: boolean;
-} | {
-    data: undefined;
-    error: TError;
-    isLoading: false;
-}) & {
+> = (
+  | AsyncSuccess<TResult>
+  | AsyncError<TError>
+  | AsyncLoading
+  | AsyncIdle
+) & {
     run: DeferedAsyncFn<TArgs, TResult>;
 }
 

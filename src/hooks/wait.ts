@@ -2,9 +2,9 @@ import type { UseWaitReturn } from "@/types";
 import { useEffect, useState } from "react";
 
 export function useWait<
-    TResult extends Promise<TResult>,
+    TResult,
     Error = unknown
->(promise: TResult) {
+>(promise: Promise<TResult>) {
     const [data, setData] = useState<TResult>();
     const [error, setError] = useState<Error>();
     const [isLoading, setIsLoading] = useState(true);
