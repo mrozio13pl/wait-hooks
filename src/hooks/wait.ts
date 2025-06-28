@@ -1,10 +1,11 @@
-import type { UseWaitReturn } from "@/types";
+import type { AsyncStatus, UseWaitReturn } from "@/types";
 import { useEffect, useState } from "react";
 
 export function useWait<
     TResult,
     Error = unknown
 >(promise: Promise<TResult>) {
+    const [status, setStatus] = useState<AsyncStatus>('loading');
     const [data, setData] = useState<TResult>();
     const [error, setError] = useState<Error>();
     const [isLoading, setIsLoading] = useState(true);
@@ -20,11 +21,13 @@ export function useWait<
             .then((data) => {
                 if (isMounted) {
                     setData(data);
+                    setStatus('success');
                 }
             })
             .catch((error) => {
                 if (isMounted) {
                     setError(error);
+                    setStatus('error');
                 }
             })
             .finally(() => {
@@ -38,5 +41,5 @@ export function useWait<
         };
     }, [promise]);
 
-    return { data, error, isLoading } as UseWaitReturn<TResult, Error>;
+    return { status, data, error, isLoading } as UseWaitReturn<TResult, Error>;
 }

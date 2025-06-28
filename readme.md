@@ -12,7 +12,7 @@ This package exposes two basic hooks: `useWait` and `useDeferWait`.
 is a simple hook that waits for a promise to resolve:
 
 ```tsx
-import { useWait } from 'wait-hooks'; // 315 B
+import { useWait } from 'wait-hooks'; // 341 B
 
 async function getData() {
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -20,7 +20,7 @@ async function getData() {
 }
 
 function Component() {
-    const { data, isLoading, error } = useWait(getData);
+    const { status, data, isLoading, error } = useWait(getData);
     
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
@@ -38,7 +38,7 @@ function Component() {
 allows to defer the execution of an async function:
 
 ```tsx
-import { useDeferWait } from 'wait-hooks'; // 379 B
+import { useDeferWait } from 'wait-hooks'; // 429 B
 
 async function getData() {
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -46,7 +46,7 @@ async function getData() {
 }
 
 function Component() {
-    const { data, isLoading, error, run } = useDeferWait(getData);
+    const { status, data, isLoading, error, run } = useDeferWait(getData);
     
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;

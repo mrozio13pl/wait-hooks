@@ -1,45 +1,40 @@
 // shared core states
 
-type AsyncSuccess<T> = {
+export type AsyncStatus = 'loading' | 'error' | 'success';
+export type AsyncDeferStatus = 'idle' | AsyncStatus;
+export type AsyncError<E = unknown> = E extends Error ? E : Error;
+
+type AsyncCoreResult<S extends AsyncDeferStatus, T, E, L extends boolean> = {
+    status: S;
     data: T;
-    error: undefined;
-    isLoading: false;
-};
-
-type AsyncError<E = unknown> = {
-    data: undefined;
     error: E;
-    isLoading: false;
-};
+    isLoading: L;
+}
 
-type AsyncLoading = {
-    data: undefined;
-    error: undefined;
-    isLoading: true;
-};
+export type AsyncSuccessResult<T> = AsyncCoreResult<'success', T, undefined, false>;
 
-type AsyncIdle = {
-    data: undefined;
-    error: undefined;
-    isLoading: false;
-};
+export type AsyncErrorResult<E extends AsyncError = AsyncError> = AsyncCoreResult<'error', undefined, E, false>;
+
+export type AsyncLoadingResult = AsyncCoreResult<'loading', undefined, undefined, true>;
+
+export type AsyncIdleResult = AsyncCoreResult<'idle', undefined, undefined, false>; 
 
 // return types
 
 export type UseWaitReturn<TResult, TError = unknown> = 
-  | AsyncSuccess<TResult>
-  | AsyncError<TError>
-  | AsyncLoading;
+  | AsyncSuccessResult<TResult>
+  | AsyncErrorResult<AsyncError<TError>>
+  | AsyncLoadingResult;
 
 export type UseDeferedWaitReturn<
     TArgs extends any[],
     TResult,
     TError = unknown
 > = (
-  | AsyncSuccess<TResult>
-  | AsyncError<TError>
-  | AsyncLoading
-  | AsyncIdle
+  | AsyncSuccessResult<TResult>
+  | AsyncErrorResult<AsyncError<TError>>
+  | AsyncLoadingResult
+  | AsyncIdleResult
 ) & {
     run: DeferedAsyncFn<TArgs, TResult>;
 }
