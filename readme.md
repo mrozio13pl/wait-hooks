@@ -1,7 +1,7 @@
 <div style="text-align: center">
     <h3>tiny async hooks for react</h3>
-    <img src="https://img.shields.io/npm/v/wait-hooks?label=%20&color=%234287f5" alt="npm version" />
-    <img src="https://img.shields.io/bundlephobia/minzip/wait-hooks?label=%20&color=%234287f5" alt="bundle size" />
+    <a href="https://npm.im/wait-hooks"><img src="https://img.shields.io/npm/v/wait-hooks?label=%20&color=%234287f5" alt="npm version" /></a>
+    <a href="https://bundlephobia.com/package/wait-hooks"><img src="https://img.shields.io/bundlephobia/minzip/wait-hooks?label=%20&color=%234287f5" alt="bundle size" /></a>
     <hr />
 </div>
 
@@ -12,7 +12,7 @@ This package exposes two basic hooks: `useWait` and `useDeferWait`.
 is a simple hook that waits for a promise to resolve:
 
 ```tsx
-import { useWait } from 'wait-hooks';
+import { useWait } from 'wait-hooks'; // 315 B
 
 async function getData() {
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -38,7 +38,7 @@ function Component() {
 allows to defer the execution of an async function:
 
 ```tsx
-import { useDeferWait } from 'wait-hooks';
+import { useDeferWait } from 'wait-hooks'; // 379 B
 
 async function getData() {
     await new Promise((resolve) => setTimeout(resolve, 1000));
